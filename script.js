@@ -112,6 +112,8 @@ function flip() {
 }
 
 function scramble() {
+  resetTimer()
+  startTimer()
   if(side=="white"){
     for(let i=0; i<9; i++){
       document.querySelectorAll(".dial")[i].style.transform = "translate(50px, 2px) rotate("+random[i]*30+"deg)";
@@ -200,6 +202,7 @@ function checkMemo() {
   else{
     alert(`Your memo: ${memo.toUpperCase()}\nCorrect memo: ${realMemo}`);
   }
+  stopTimer()
 }
 
 function scrambleconvert(s) {
@@ -430,3 +433,50 @@ document.querySelector("#scramble").addEventListener("click", function() {
 document.querySelector("#clock").addEventListener("click", function() {
   flip();
 });
+
+// show the timer when checkbox is clicked
+document.querySelector("#timerButton").addEventListener("click", function() {
+  if (document.querySelector("#timerButton").checked) {
+    document.querySelector("#timer").style.display = "block";
+  }
+  else{
+    document.querySelector("#timer").style.display = "none";
+  }
+});
+
+// all the code for the timer
+let timerInterval;
+let seconds = 0;
+let startTime;
+let isRunning = false;
+function updateTimer() {
+  document.getElementById('timer').innerText = seconds.toFixed(2);
+}
+function startTimer() {
+  if (!isRunning) {
+    isRunning = true;
+    startTime = performance.now();
+    timerInterval = requestAnimationFrame(updateTimerFrame);
+  }
+}
+function updateTimerFrame() {
+  if (isRunning) {
+    const elapsedTime = performance.now() - startTime;
+    seconds = elapsedTime / 1000;
+    updateTimer();
+    timerInterval = requestAnimationFrame(updateTimerFrame);
+  }
+}
+function stopTimer() {
+  if (isRunning) {
+    cancelAnimationFrame(timerInterval);
+    isRunning = false;
+  }
+}
+function resetTimer() {
+  cancelAnimationFrame(timerInterval);
+  isRunning = false;
+  seconds = 0;
+  updateTimer();
+}
+startTimer()
