@@ -73,3 +73,6 @@ body {
   font-weight: bold;
   color: red;
 }
+#timer {
+  display: none;
+}
