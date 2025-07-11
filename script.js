@@ -193,8 +193,8 @@ function checkMemo() {
     const newLetter = boring_map.get(letter);
     // Add new letter to end of string
     boring_memo += newLetter;
-
   }
+  
   if(memo==realMemo){
     alert("correct!")
   }
