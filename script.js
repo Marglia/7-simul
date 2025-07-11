@@ -191,7 +191,7 @@ function checkMemo() {
     // Get current letter
     const letter = realMemo[i];
     // Get new letter (using provided map). Set current letter to upper case for consistency with map
-    const newLetter = boring_map.get(letter.toUpperCase);
+    const newLetter = boring_map.get(letter.toUpperCase());
     // Add new letter to end of string
     boring_memo += newLetter;
   }
