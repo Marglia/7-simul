@@ -181,20 +181,27 @@ function checkMemo() {
     ["K", "e"],
     ["L", "f"]
   ]);
-    
-  const boring_memo = {};
+
+  // Initialize spot for remapped letters
+  let boring_memo = "";
 
   // Loop over each character in realMemo
   for (let i = 0; i < realMemo.length; i++) {
+    // Get current letter
     const letter = realMemo[i];
+    // Get new letter (using provided map)
     const newLetter = boring_map.get(letter);
-    boring_memo[i] = newLetter;
+    // Add new letter to end of string
+    boring_memo += newLetter;
+
+alert(`Your memo: ${memo.toUpperCase()}\nCorrect memo: ${boring_memo}`);
+
   }
   if(memo==realMemo){
     alert("correct!")
   }
   else {
-    // I manually set to custom letter
+    // I manually set to custom letter scheme
     alert(`Your memo: ${memo.toUpperCase()}\nCorrect memo: ${boring_memo}`);
   }
   stopTimer()
