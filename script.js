@@ -179,7 +179,8 @@ function checkMemo() {
     ["I", "c"],
     ["J", "d"],
     ["K", "e"],
-    ["L", "f"]
+    ["L", "f"],
+    [" ", " "]
   ]);
 
   // Initialize spot for remapped letters
