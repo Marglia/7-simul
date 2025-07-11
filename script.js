@@ -194,8 +194,6 @@ function checkMemo() {
     // Add new letter to end of string
     boring_memo += newLetter;
 
-alert(`Your memo: ${memo.toUpperCase()}\nCorrect memo: ${boring_memo}`);
-
   }
   if(memo==realMemo){
     alert("correct!")
