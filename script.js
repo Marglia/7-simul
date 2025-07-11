@@ -151,27 +151,51 @@ function checkPinOrder(input) {
 
 function checkMemo() {
   let realMemo = "";
-  for(let i of order[0]){
-    if(document.getElementById(i).checked){
-      let c=0;
-      let c2=0;
-      for(let z=0; z<14; z++){
-        c+=random[z]*matrices[order[2]][order[1].indexOf(i)*2][z]
-        c2+=random[z]*matrices[order[2]][order[1].indexOf(i)*2+1][z]
+  for (let i of order[0]) {
+    if (document.getElementById(i).checked) {
+      let c = 0;
+      let c2 = 0;
+      for (let z = 0; z < 14; z++) {
+        c += random[z] * matrices[order[2]][order[1].indexOf(i) * 2][z]
+        c2 += random[z] * matrices[order[2]][order[1].indexOf(i) * 2 + 1][z]
       }
-      if(["ur","dr","UL","DL","L","\\"].includes(i) || (i=="U" && document.querySelector("#umove").value=="left") || (i=="D" && document.querySelector("#dmove").value=="left")){
-        realMemo += l[(c+144)%12] + l[(c2+144)%12] + " ";
+      if (["ur", "dr", "UL", "DL", "L", "\\"].includes(i) || (i == "U" && document.querySelector("#umove").value == "left") || (i == "D" && document.querySelector("#dmove").value == "left")) {
+        realMemo += l[(c + 144) % 12] + l[(c2 + 144) % 12] + " ";
       }
-      else{
-        realMemo += l[(c2+144)%12] + l[(c+144)%12] + " ";
+      else {
+        realMemo += l[(c2 + 144) % 12] + l[(c + 144) % 12] + " ";
       }
     }
+  }
+  boring_map = new Map([
+    ["A", "g"],
+    ["B", "h"],
+    ["C", "i"],
+    ["D", "j"],
+    ["E", "k"],
+    ["F", "l"],
+    ["G", "a"],
+    ["H", "b"],
+    ["I", "c"],
+    ["J", "d"],
+    ["K", "e"],
+    ["L", "f"]
+  ]);
+    
+  const boring_memo = {};
+
+  // Loop over each character in realMemo
+  for (let i = 0; i < realMemo.length; i++) {
+    const letter = realMemo[i];
+    const newLetter = boring_map.get(letter);
+    boring_memo[i] = newLetter;
   }
   if(memo==realMemo){
     alert("correct!")
   }
-  else{
-    alert(`Your memo: ${memo.toUpperCase()}\nCorrect memo: ${realMemo}`);
+  else {
+    // I manually set to custom letter
+    alert(`Your memo: ${memo.toUpperCase()}\nCorrect memo: ${boring_memo}`);
   }
   stopTimer()
 }
